@@ -91,6 +91,12 @@ class JsonSerializer(object):
             generic_json_result = str(target)
         elif (obj_type == 'float') :
             generic_json_result = str(target)
+        elif (obj_type == 'long') :
+            generic_json_result = str(target)
+        elif (obj_type == 'bool') :
+            generic_json_result = str(target)
+        elif (obj_type == 'unicode') :
+            generic_json_result = "{ " + self.quote + "unicode" + self.quote + " : " + self.quote + str(target) + self.quote + "}"
         elif (obj_type == 'str') :
             generic_json_result = self.quote + str(target) + self.quote
         elif (obj_type == 'list') :
