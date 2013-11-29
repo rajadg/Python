@@ -17,7 +17,7 @@ class myClass:
         self.a = 10
         self.b = "20"
         self.c = [1,2,3,4,5]
-        self.d = (10,20,30,40)
+        self.d = (10,20,30,40.0,0x0001)
         self.data = {"name" : "ds", "lang" : "python", "priority": 11}
         self.loc = Point(11,12)
         self.rect = Rectangle(Point(0,0), Point(20,20))
