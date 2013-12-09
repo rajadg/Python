@@ -16,6 +16,12 @@ my_coll = {
            'mac'  : 'yes',
            'linux' : 'yes'
            }
+
+print my_coll.has_key("test")
+print my_coll.has_key("mac")
+print my_coll["test"]
+
+
 # print the dictionary
 print str(my_coll)
 
