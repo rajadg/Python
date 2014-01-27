@@ -6,6 +6,7 @@ Created on 27-Jan-2014
 
 def decorator_class(my_class):
     def getinstance(*args, **kw):
+        print "class " + my_class.__name__ + " is instantiated ..."
         return ('START', my_class(*args, **kw), 'END')
     return getinstance
 
@@ -28,6 +29,7 @@ import json
 
 def test_class_01():
     pt = point(10,11)
+    print "created point"
     for item in pt :
         if type(item).__name__ == 'str' :
             print item
