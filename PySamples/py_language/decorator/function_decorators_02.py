@@ -21,15 +21,21 @@ def log_to_console(original_function):
     return proxy_implementation
 
 
-@log_to_console
+@log_to_console()
 def add_numbers_02(a, b):
     print "inside add_numbers: " + str(a) + ", " + str(b)
     return a + b
 
+# meaning is : log_to_console(add_numbers_02(1,11))
+
 def test_func_02():
-    print "Calling add_numbers..."
-    print "result: " + str(add_numbers_02(23,24))
-    print "finished !!" 
+    #print "Calling add_numbers..."
+    print "return value is: " + str(add_numbers_02(23,24))
+    #print "finished !!" 
     
-test_func_02()
+#test_func_02()
+
+
+
+
     

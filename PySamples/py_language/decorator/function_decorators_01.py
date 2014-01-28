@@ -26,6 +26,8 @@ def func_deco(param):
     return wrapper
 
 
+# func_deco(add_numbers_01(1,2))(10) = func_deco(10) + wrapper(add_numbers_01(1,2))
+
 @func_deco(10)
 def add_numbers_01(a, b):
     print "inside add_numbers: " + str(a) + ", " + str(b)

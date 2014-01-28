@@ -28,7 +28,7 @@ class point(object):
 import json
 
 def test_class_01():
-    pt = point(10,11)
+    pt = point(10,11) # equivalent => decorator_class(point(10,11))
     print "created point"
     for item in pt :
         if type(item).__name__ == 'str' :
