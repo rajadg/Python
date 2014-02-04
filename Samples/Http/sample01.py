@@ -201,7 +201,15 @@ def get_folders_recursive(ip, port, user, pwd, folder_id = "", folder_type='loca
     # print list
     return list
 
-print get_folders_recursive("172.29.242.248", "8888", "load04", "password", folder_id = "", folder_type="workspace")
+def create_folder_nuxeo(parent_id, folder_name) :
+    target_url = automation_url(nuxeo_ip, nuxeo_port, "NuxeoDrive.CreateFolder")
+    result = make_nuxeo_request(target_url, user='load04', pwd='password', request_data = '{"params": { "name" : "' + folder_name + '", "parentId": "'+ parent_id + '"}}')
+    print result
+
+# create the folders
+create_folder_nuxeo(workspace_id, "gopala gopala")
+
+# print get_folders_recursive("172.29.242.248", "8888", "load04", "password", folder_id = "", folder_type="workspace")
 
 #print get_folders_recursive("172.29.242.248", "8888", "load04", "password", folder_id = "c96bb06c-a9fa-4cf2-9cd5-ac6ba17b26d0", folder_type="local")
 
