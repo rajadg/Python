@@ -5,7 +5,7 @@ Python
 
 ----
 
-Contains multiple python projects:
+Contains multiple python projects :beers: :
 - Some projects are **utilities** and *re-usable*.
 - Some projects are simple **samples** *for learning*.
  
@@ -22,14 +22,14 @@ Contains multiple python projects:
 - **PyUtils**
     - Contains utility code for re-use
     - Will keep adding more utility code
-    - Currently available
-      - **Developer** package
-        - **JsonSerializer** serializes a given python object in json format
-        - **test** package : contains code to test *JsonSerializer* class
+    - Currently available 
+      - **Developer** package :sparkles:
+        - :boom: **JsonSerializer** serializes a given python object in json format
+        - :thumbsup: **test** package : contains code to test *JsonSerializer* class
 
 *Example*
 ---
-- **JsonSerializer**
+- **JsonSerializer** :moneybag:
 
   ```python
   from Developer.JsonSerializer import JsonSerializer
