@@ -22,8 +22,9 @@ class JsonSerializer(object):
         self.use_new_line = use_new_line
         self.show_class_name = show_class_name
         self.quote = "'"
+        self.recursion = 0
         pass
-    #end of constructor
+    # end of constructor
 
     '''
         Gets the type of the Object
@@ -37,7 +38,7 @@ class JsonSerializer(object):
         full_name = ""
         if (target == None or target.__class__ == None) :
             obj_type = "null"
-        elif (str(type(target.__class__)) == "<type 'classobj'>") :
+        elif (str(type(target.__class__)) == "<type 'classobj'>") or hasattr(target, '__dict__'):
             obj_type = "class"
             short_name = target.__class__.__name__
             full_name = str(target.__class__)
@@ -47,20 +48,31 @@ class JsonSerializer(object):
         return obj_type, short_name, full_name
     # end of object_meta_data method
     
+    def var_to_json_ex(self, name, target, indent):
+        self.recursion = 0
+        return self.var_to_json(name, target, indent)
+    
     '''
         Convert a variable to JSON Representation
     '''
     def var_to_json(self, name, target, indent):
-        # invoke the any_to_json
-        var_json_result = self.any_to_json(target, indent)
-        # assemble the data
-        if (None == name ) :
-            # expansion of object as part of list or tuple or dictionary
-            var_json_result = var_json_result
-        else:
-            # expansion of object which is a member or a variable
-            var_json_result = self.quote + name + self.quote + " : " + var_json_result
-        return var_json_result
+        level = self.recursion
+        self.recursion = self.recursion + 1
+        try:
+            if self.recursion > 16 :
+                raise Exception("complicated data")
+            # invoke the any_to_json
+            var_json_result = self.any_to_json(target, indent)
+            # assemble the data
+            if (None == name) :
+                # expansion of object as part of list or tuple or dictionary
+                var_json_result = var_json_result
+            else:
+                # expansion of object which is a member or a variable
+                var_json_result = self.quote + str(name) + self.quote + " : " + str(var_json_result)
+            return var_json_result
+        finally:
+            self.recursion = self.recursion - 1
     # end of var_to_json method
 
     '''
@@ -70,7 +82,7 @@ class JsonSerializer(object):
         # invoke the any_to_json
         var_json_result = self.any_to_json(target, indent)
         # assemble the data
-        if (None == name ) :
+        if (None == name) :
             # expansion of object as part of list or tuple or dictionary
             var_json_result = var_json_result
         else:
@@ -124,6 +136,7 @@ class JsonSerializer(object):
         
         # return the data
         return generic_json_result
+
     # end of any_to_json method
     
     '''
@@ -148,19 +161,19 @@ class JsonSerializer(object):
     def list_to_json(self, target, indent):
         result = ""
         # ignore empty objects
-        if ( None == target or target.__class__ == None ):
+        if (None == target or target.__class__ == None):
             return "null"
         class_name = str(target.__class__.__name__)
         # ignore anything not a list or tuple
-        if ( class_name != "list" and class_name != "tuple" ):
+        if (class_name != "list" and class_name != "tuple"):
             return result
         
         # expand the target object as a list
         result = "["
         for index in xrange(0, len(target)) :
-            if (len(result)>1) :
+            if (len(result) > 1) :
                 result = result + ","
-            result = result + self.generate_spaces(indent+1) + self.any_to_json(target[index], indent+1)
+            result = result + self.generate_spaces(indent + 1) + self.any_to_json(target[index], indent + 1)
             pass
         
         result = result + self.generate_spaces(indent) + "]"
@@ -175,26 +188,29 @@ class JsonSerializer(object):
     def class_to_json(self, target, indent, short_name, full_name):
         result = "{"
         # ignore empty objects
-        if ( None == target or target.__class__ == None or str(type(target.__class__)) != "<type 'classobj'>"):
+        if None == target or target.__class__ == None or \
+           (str(type(target.__class__)) != "<type 'classobj'>" and not hasattr(target, '__dict__')):
             return "null"
 
         if (self.show_class_name) :
-            result = result + self.generate_spaces(indent+1) + self.quote + "class" + self.quote + " : " 
+            result = result + self.generate_spaces(indent + 1) + self.quote + "class" + self.quote + " : " 
             result = result + self.quote + short_name + "@" + full_name + self.quote
             pass
         
         # iterate through all the members of the class        
         for name, value in vars(target).iteritems():
-            if (len(result)>1) :
+            if (len(result) > 1) :
                 result += ","
                 pass
+            if name[:4] == "____" and name[-4:] == "____" :
+                continue
             data = self.var_to_json(name, value, indent + 1)
-            result += self.generate_spaces(indent+1) + data
+            result += self.generate_spaces(indent + 1) + data
             pass
         
         result += self.generate_spaces(indent) + "}"
         return result
-    #end of class_to_json method
+    # end of class_to_json method
         
 
 
@@ -206,7 +222,7 @@ class JsonSerializer(object):
     def dict_to_json(self, target, indent, short_name, full_name):
         result = "{"
         # ignore empty objects
-        if ( None == target or target.__class__ == None or str(target.__class__.__name__) != "dict"):
+        if (None == target or target.__class__ == None or str(target.__class__.__name__) != "dict"):
             return "null"
 
 #         if (self.show_class_name) :
@@ -216,19 +232,19 @@ class JsonSerializer(object):
         
         # iterate through all the members of the class        
         for key in target.keys():
-            if (len(result)>1) :
+            if (len(result) > 1) :
                 result += ","
                 pass
             value = target[key]
             data = self.var_to_json(key, value, indent + 1)
-            result += self.generate_spaces(indent+1) + data
+            result += self.generate_spaces(indent + 1) + data
             pass
         
         result += self.generate_spaces(indent) + "}"
         return result
-    #end of dict_to_json method
+    # end of dict_to_json method
         
-    pass # end of class
+    pass  # end of class
 
 
         
