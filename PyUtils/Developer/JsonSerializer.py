@@ -211,7 +211,6 @@ class JsonSerializer(object):
         result += self.generate_spaces(indent) + "}"
         return result
     # end of class_to_json method
-        
 
 
     '''
