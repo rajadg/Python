@@ -1,5 +1,5 @@
 
-class static_sample :
+class static_sample (object) :
     _static_counter = 1
     
     def __init__ (self):

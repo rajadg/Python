@@ -13,6 +13,10 @@ import random
 # resources
 some_engine = create_engine('sqlite:///D:\\Temp\\Python\\employees.db')
 
+some_engine.execute("ALTER TABLE User ADD COLUMN count INTEGER")
+
+exit()
+
 # Create a configured "Session" class
 Session = sessionmaker(bind=some_engine)
 
