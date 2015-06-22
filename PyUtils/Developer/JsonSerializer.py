@@ -108,7 +108,7 @@ class JsonSerializer(object):
         elif (obj_type == 'bool') :
             generic_json_result = str(target)
         elif (obj_type == 'unicode') :
-            generic_json_result = "{ " + self.quote + "unicode" + self.quote + " : " + self.quote + str(target) + self.quote + "}"
+            generic_json_result = u"{ " + self.quote + u"unicode" + self.quote + u" : " + self.quote + str(target) + self.quote + u"}"
         elif (obj_type == 'str') :
             generic_json_result = self.quote + str(target) + self.quote
         elif (obj_type == 'list') :
