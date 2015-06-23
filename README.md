@@ -19,6 +19,12 @@ Contains multiple python projects :beers: :
 
 --
 
+- **djweb01**
+ - A django web application
+ - Contains some sample web pages
+
+--
+
 - **PyUtils**
     - Contains utility code for re-use
     - Will keep adding more utility code
