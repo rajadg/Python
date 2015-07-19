@@ -9,5 +9,7 @@ urlpatterns = patterns('',
     url(r'^samples/basic01', 'djweb01.samples.basic.basic01'),
     url(r'^samples/basic02/$', 'djweb01.samples.basic.basic02'),
     url(r'^samples/basic03/(?P<arg>(\d|\w)+)/$', 'djweb01.samples.basic.basic03'),
+    url(r'^samples/basic04', 'djweb01.samples.basic.basic04'),
+    url(r'^samples/basic05', 'djweb01.samples.basic.basic05'),
     url(r'^admin/', include(admin.site.urls)),
 )
