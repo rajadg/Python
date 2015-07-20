@@ -19,4 +19,6 @@ code, encoding = _locale._getdefaultlocale()
 print code
 print encoding
 
+print "Code: %r, Encoding: %s" % (code, encoding)
+
 print "end ... \n"
