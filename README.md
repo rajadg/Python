@@ -21,7 +21,7 @@ Contains multiple python projects :beers: :
 
 - **djweb01**
  - A django web application
- - Contains some sample web pages
+ - Contains some sample web pages using django
 
 --
 

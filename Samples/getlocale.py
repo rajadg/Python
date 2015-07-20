@@ -18,3 +18,5 @@ code, encoding = _locale._getdefaultlocale()
 
 print code
 print encoding
+
+print "end ... \n"
