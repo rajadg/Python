@@ -81,3 +81,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+from django.conf import settings
+
+
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+MIDDLEWARE_CLASSES = [ ]
+#     "django.middleware.csrf.CsrfViewMiddleware",
+#     "django.middleware.common.CommonMiddleware",
+#     "django.contrib.sessions.middleware.SessionMiddleware",
+#     "django.contrib.auth.middleware.AuthenticationMiddleware",
+#     "django.contrib.messages.middleware.MessageMiddleware",
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+# ]
+
