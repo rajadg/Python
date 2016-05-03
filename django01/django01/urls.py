@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from application.simple import samples
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^simple/welcome', samples.welcome_page),
 ]
