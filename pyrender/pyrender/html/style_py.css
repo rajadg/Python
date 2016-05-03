@@ -1,0 +1,66 @@
+@CHARSET "ISO-8859-1";
+
+
+body {
+    font-family: courier new;
+    font-size: large;
+}
+table {
+    width: 100%;
+    font-size: large;
+}
+td {
+    border-left: solid 1px black;
+}
+.fill {
+    width: 99%;
+    text-wrap: unrestricted;
+}
+.lineno {
+    color: darkcyan;
+    width: 40px;
+    text-align: right;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+    vertical-align: top;   
+}
+.id {
+    color: black;
+}
+.key {
+    color: blue;
+    font-weight: bold;
+}
+.num {
+    color: magenta;
+}
+.op {
+    color: blue;
+    font-weight: bold;
+}
+.cm {
+    color: gray;
+}
+.str {
+    color: red;
+}
+.blt {
+    color: darkblue;
+}
+.cst {
+    color: darkcyan;
+}
+.spc {
+    white-space: pre;
+}
+.current_line {
+	background-color: yellow;
+}
+.active_break_point {
+	background-color: #C0D0FF;
+}
+.break_point {
+	background-color: #F7F7F7;
+}
+
