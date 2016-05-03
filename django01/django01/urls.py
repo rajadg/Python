@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index.index_page),
     url(r'^index', index.index_page),
+    url(r'^simple_template', index.simple_template),
+    url(r'^bootstrap_template', index.bootstrap_template),
     url(r'^simple/welcome', samples.welcome_page),
     url(r'^simple/json', samples.json_formatter),
 ]

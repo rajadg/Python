@@ -44,5 +44,19 @@ def index_page(request):
     return render(request, "index.html", data)
 
 
+def simple_template(request):
+    """
+        A simple template that can be used by other pages
+    """
+    return render(request, "simple_template.html")
+
+
+def bootstrap_template(request):
+    """
+        A simple template that can be used by other pages
+    """
+    return render(request, "bootstrap_template.html")
+
+
 if __name__ == '__main__':
     pass

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>{% block title %}bootstrap template {% endblock %}</title>
+</head>
+<body>
+	<div>
+		<table
+			style='border: solid 1px black; background-color: silver; width: 99%'>
+			<tr>
+				<td style="width: 100px"><a href="/index">Home</a></td>
+				<td>Welcome: <b>{{ request.user }}</b></td>
+				<td style="text-align: right">Logged in from:
+					{{request.META.REMOTE_ADDR}}</td>
+				<td style="position: relative; right: 0px; text-align: right"><a
+					href='/admin'>Administration</a></td>
+			</tr>
+		</table>
+	</div>
+	{%block body %}
+	<h1>Bootstrap template</h1>
+	{% endblock %}
+</body>
+</html>
