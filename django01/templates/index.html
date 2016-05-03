@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome to Django01</title>
+</head>
+<body>
+	<h1>Django01</h1>
+	<div style='width: 100%; text-align: center;'>
+		<table border='1'>
+			<thead style='font-weight: bold; font-size: large'>
+				<tr>
+					<td style='min-width: 300px'>Implementation</td>
+					<td style='min-width: 10%; max-width: 20%'>URL</td>
+				</tr>
+			</thead>
+			{% for row in urls %}
+			<tr>
+				<td style='text-align: left'><pre>{{row.impl}}</pre></td>
+				<td style='text-align: left'><a href="{{row.url}}">{{row.title}}</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</body>
+</html>

@@ -16,9 +16,17 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from application import index
+
 from application.simple import samples
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', index.index_page),
+    url(r'^index', index.index_page),
     url(r'^simple/welcome', samples.welcome_page),
+    url(r'^simple/json', samples.json_formatter),
 ]
+
+
+index.all_urls["patterns"] = urlpatterns

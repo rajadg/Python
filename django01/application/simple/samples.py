@@ -10,6 +10,9 @@ from django01.settings import BASE_DIR
 
 
 def welcome_page(request):
+    """
+        Displays a welcome page with request details
+    """
     print "Loading template from %s/%s ..." % (BASE_DIR, "simple/table01.html")
     meta = dict([(key, val) for key, val in request.META.iteritems() if isinstance(val, str) and key not in os.environ.keys()])
     misc = {"cookies": request.COOKIES,
@@ -22,6 +25,14 @@ def welcome_page(request):
     data = {"raw_json": json.dumps(meta, indent=4),
             "misc": json.dumps(misc, indent=4)}
     return render(request, "simple/welcome.html", data)
+
+
+def json_formatter(request):
+    """
+        A json formatting page
+    """
+    data = {"result": "result"}
+    return render(request, "simple/json_formatter.html", data)
 
 
 if __name__ == '__main__':
