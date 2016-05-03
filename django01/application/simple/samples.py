@@ -31,7 +31,11 @@ def json_formatter(request):
     """
         A json formatting page
     """
-    data = {"result": "result"}
+    result = "nothing"
+    if request.POST:
+        loaded = json.loads(request.POST["raw"])
+        result = json.dumps(loaded, indent=4)
+    data = {"result": result, "original": str(request.POST["raw"])}
     return render(request, "simple/json_formatter.html", data)
 
 

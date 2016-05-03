@@ -6,8 +6,15 @@
 </head>
 <body>
 
-Type your json here:
-	<input type='text'>
-
+	<form method="POST">
+		{% csrf_token %}
+		<h2>JSON Formatter</h2> 
+		<h3>Type your json here: </h3>
+		<textarea name='raw' style="width: 80%; min-height: 200px; height: 40%">{{original}}</textarea>
+		<br/><h4>
+		<input type='submit' value="Format as JSON" /> </h4>
+		<h3>Formatted JSON</h3>
+		<pre>{% autoescape off %}{{ result }}{% endautoescape %}</pre>
+	</form>
 </body>
 </html>

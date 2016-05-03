@@ -29,7 +29,6 @@ def format_text(text):
 def index_page(request):
     """
         Retrieves the index page (all urls configured in the application)
-        ...
     """
     print "Loading template from %s/%s ..." % (BASE_DIR, "index.html")
     items = []
