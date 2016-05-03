@@ -9,30 +9,30 @@
 </head>
 <body>
 	<div>
-		<nav class="navbar navbar-default navbar-fixed-top">
+		<nav class="navbar navbar-success navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#"> <b class=" disabled">
-							Sample</b></a>
+							Welcome </b></a>
 				</div>
 				<ul class="nav navbar-nav">
 					<li><a href="/"><span
 							class="badge glyphicon glyphicon-user"> </span> <b
 							class=" disabled"> {{request.user}}</b></a></li>
-					<li><a href="/"><span
+					<li><a href="/" class="text-primary"><span
 							class="glyphicon glyphicon-home"> </span> Home </a></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-centre green">
-					<li><a class="disabled"><b>DJANGO-01 Website with
+				<ul class="nav navbar-nav navbar-centre bg-primary text-default">
+					<li><a class="lead" style="height: 30px"><b>DJANGO-01 Website with
 								multiple Samples</b></a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li class="disabled"><a href="#"> <span
+					<li class="text-success"><a href="#"> <span
 							class="glyphicon glyphicon-globe"> </span>
 							{{request.META.REMOTE_ADDR}}
 					</a></li>
 					<li><a href="/admin"><span
-							class="badge badge-default glyphicon glyphicon-wrench"> </span>
+							class="badge badge-default glyphicon glyphicon-wrench bg-primary"> </span>
 							Administration</a></li>
 				</ul>
 			</div>
