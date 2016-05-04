@@ -18,7 +18,7 @@ from django.contrib import admin
 
 from application import index
 
-from application.simple import samples
+from application.simple import samples, database
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^bootstrap_template', index.bootstrap_template),
     url(r'^simple/welcome', samples.welcome_page),
     url(r'^simple/json', samples.json_formatter),
+    url(r'^simple/contacts', database.contact_view),
 ]
 
 
