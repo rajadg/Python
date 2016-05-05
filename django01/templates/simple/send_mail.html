@@ -1,0 +1,53 @@
+{% extends 'bootstrap_template.html' %} {% block body %}
+<h2>Send email</h2>
+<div class='well'
+	style="position: relative; left: 5%; width: 90%; top: 5px; min-height: 60%;">
+	<form class="form-horizontal" role="form" method="POST">
+		{% csrf_token %}
+		<div class='row'>
+			<div class="col-sm-10">
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="sender">Sender</label>
+					<div class="col-sm-11">
+						<input type="email" class="form-control" id="sender" name="sender"
+							placeholder="Enter sender email address" value="{{sender}}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="to">To</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" id="to" name="to"
+							placeholder="Enter to addresses" value="{{to}}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="cc">Cc</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" id="cc" name="cc"
+							placeholder="Enter Cc addresses" value="{{cc}}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-1" for="subject">Subject</label>
+					<div class="col-sm-11">
+						<input type="text" class="form-control" id="subject"
+							name="subject" placeholder="Enter email subject"
+							value="{{subject}}">
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<button type="submit" class="form-control btn btn-lg btn-success btn-block" id="send"
+					name="send" value="send" style="height: 50px">Send</button>
+			</div>
+		</div>
+		<div class="form-group form-group-lg">
+			<div class="col-sm-12">
+				<textarea name="body" id="body"
+					class="form-control panel text-default input-lg"
+					placeholder="Enter your email body here ...">{{body}}</textarea>
+			</div>
+		</div>
+	</form>
+</div>
+{% endblock %}

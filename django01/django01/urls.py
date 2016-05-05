@@ -18,7 +18,7 @@ from django.contrib import admin
 
 from application import index
 
-from application.simple import samples, database
+from application.simple import samples, database, mailer
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^simple/welcome', samples.welcome_page),
     url(r'^simple/json', samples.json_formatter),
     url(r'^simple/contacts', database.contact_view),
+    url(r'^simple/send_mail', mailer.compose_email),
 ]
 
 
