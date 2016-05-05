@@ -1,7 +1,8 @@
 {% extends 'bootstrap_template.html' %} {% block body %}
 <h2>Send email</h2>
-<div class='well'
-	style="position: relative; left: 5%; width: 90%; top: 5px; min-height: 60%;">
+<style>.form-control {background-color: #ddffee}</style>
+<div class='well bg-warn'
+	style="position: relative; left: 5%; width: 90%; top: 5px; min-height: 60%; background-color: #ddeeff">
 	<form class="form-horizontal" role="form" method="POST">
 		{% csrf_token %}
 		<div class='row'>
@@ -37,14 +38,14 @@
 				</div>
 			</div>
 			<div class="col-sm-2">
-				<button type="submit" class="form-control btn btn-lg btn-success btn-block" id="send"
-					name="send" value="send" style="height: 50px">Send</button>
+				<button type="submit" class="btn btn-lg btn-block btn-success " id="send"
+					name="send" value="send" style="height: 50px">Send &nbsp; <span class="glyphicon glyphicon-chevron-right"></span></button>
 			</div>
 		</div>
 		<div class="form-group form-group-lg">
 			<div class="col-sm-12">
-				<textarea name="body" id="body"
-					class="form-control panel text-default input-lg"
+				<textarea name="body" id="body" style="min-height: 300px; background-color: #ddffee"
+					class="form-control input-lg well bg-danger"
 					placeholder="Enter your email body here ...">{{body}}</textarea>
 			</div>
 		</div>
