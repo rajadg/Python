@@ -31,8 +31,8 @@ def json_formatter(request):
     """
         A json formatting page
     """
-    result = "nothing"
-    raw_input = "<enter raw json here>"
+    result = ""
+    raw_input = ""
     if "raw" in request.POST:
         raw_input = request.POST["raw"]
     if request.POST:

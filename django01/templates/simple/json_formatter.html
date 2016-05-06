@@ -1,20 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>JSON Formatter</title>
-</head>
-<body>
-
+{% extends 'bootstrap_template.html' %} {% block body %}
+<div class='well bg-warn'
+	style="position: relative; left: 20px; width: 90%; top: 5px; min-height: 60%; background-color: #f0f7ff">
 	<form method="POST">
 		{% csrf_token %}
-		<h2>JSON Formatter</h2> 
-		<h3>Type your json here: </h3>
-		<textarea name='raw' style="width: 80%; min-height: 200px; height: 40%">{{original}}</textarea>
-		<br/><h4>
-		<input type='submit' value="Format as JSON" /> </h4>
-		<h3>Formatted JSON</h3>
-		<pre>{% autoescape off %}{{ result }}{% endautoescape %}</pre>
+
+		<div class="centered">
+			<div class="row">
+				<div class="col-sm-4 text-left">
+					<label class="strong h3 lead text-primary">JSON Formatter</label>
+				</div>
+				<div class="col-sm-4 text-center">
+					<button class="btn btn-success btn-lg strong" type='submit'>Format as
+						JSON</button>
+				</div>
+				<div class="col-sm-4">&nbsp;</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="row">
+					<label class="control-label col-sm-4" for="sender">Type
+						your json here</label>
+				</div>
+				<div class="row ">
+					<textarea class='well col-sm-12' name='raw'
+						style="min-height: 400px; background-color: lightyellow"
+						placeholder="Enter raw json">{{original}}</textarea>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="row">
+					<label class="control-label col-sm-4 pull-right" for="sender">Formatted
+						JSON</label>
+				</div>
+				<pre placeholder="formatted json here..."
+					style="min-height: 400px; background-color: #f0fff0">{% autoescape off %}{{ result }}{% endautoescape %}</pre>
+			</div>
+		</div>
 	</form>
-</body>
-</html>
+</div>
+{% endblock %}
