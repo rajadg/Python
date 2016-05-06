@@ -1,50 +1,132 @@
 {% extends 'bootstrap_template.html' %} {% block body %}
-<form method="POST">
-	{% csrf_token %}
-	<div class='row' style="position: relative; left: 60px; width: 450px">
-		<h2>Contacts</h2>
-		<div class='row' style="width: 250px">
-			<div class='row'>
-				<span class='col-sm-2'>Name</span> <span class='col-sm-8 pull-right'><input
-					class="text" type='text' name='name' value="{{name}}" /></span>
+<div class='row' style="padding-left: 30px; padding-right: 30px">
+	<script type='text/javascript'>
+	function add_item(item_id) {
+		var item = document.getElementById("target");
+		target.value = item_id;
+		var action = document.getElementById("action");
+		action.value = 'add';
+		document.getElementById("contactForm").submit();
+	}
+	function edit_item(item_id) {
+		var item = document.getElementById("target");
+		target.value = item_id;
+		var action = document.getElementById("action");
+		action.value = 'edit';
+		document.getElementById("contactForm").submit();
+	}
+	function remove_item(item_id) {
+		var item = document.getElementById("target");
+		target.value = item_id;
+		var action = document.getElementById("action");
+		action.value = 'remove';
+		document.getElementById("contactForm").submit();
+	}
+	function refresh_edit(item_id) {
+		var action = document.getElementById("action");
+		action.value = '{{action}}';
+		document.getElementById("contactForm").submit();
+	}
+	function clear_edit(item_id) {
+		document.getElementById("target").value = 0;
+		document.getElementById("action").value = "add";
+		document.getElementById("add").innerText = 'add';
+		document.getElementById("activity").value = "add";
+		document.getElementById("addicon").className = 'glyphicon glyphicon-plus label';
+		document.getElementById("name").value = "";
+		document.getElementById("email").value = "";
+		document.getElementById("phone").value = "";
+	}
+	</script>
+	<form id='contactForm' method="POST" class="form-horizontal">
+		{% csrf_token %}
+		<div>
+			<h2>Contacts</h2>
+		</div>
+		<input type='hidden' id='target' name='target' value="{{target}}"/> 
+		<input type='hidden' id='action' name='action' value=""/> 
+		<input type="hidden" id="activity" name="activity" value="{{activity}}" />
+		<div class="row" style="">
+			<div class='col-sm-4' style="font-size: 1.2vw; padding: 10px;">
+				<div class='well'
+					style="position:relative; background-color: #f0fff0">
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="sender">
+						<span class="text-primary glyphicon glyphicon-user pull-left"> </span> Name</label>
+						<div class="col-sm-8">
+							<input class="text" type='text' name='name' id='name' value="{{name}}" style="width: 95%" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="sender">
+						<span class="text-primary glyphicon glyphicon-envelope pull-left"> </span> Email</label>
+						<div class="col-sm-8">
+							<input class="text" type='email' name='email' id='email' value="{{email}}" style="width: 95%" />
+						</div>
+					</div>
+					<div class="form-group">
+						
+						<label class="control-label col-sm-4" for="sender">
+						<span class="text-primary glyphicon glyphicon-phone pull-left"> </span> Phone</label>
+						<div class="col-sm-8">
+							<input class="text" type='numeric' name='phone' id='phone' value="{{phone}}" style="width: 95%" />
+						</div>
+					</div>
+					<div class="form-group" style='font-size: 3vw'>
+						<span class="pull-right" style='marigin-bottom: 20px'>
+							<button class="btn btn-warning text-capitalize" type='button'
+								value='Clear' name="clear" onclick='clear_edit({{target}});'>
+								Clear <span class="glyphicon glyphicon-erase label">
+							</button>&nbsp;
+							<button class="btn btn-success text-capitalize"
+								value='refresh' name="refresh" onclick='refresh_edit({{target}});'>
+								Refresh <span class="glyphicon glyphicon-refresh label">
+							</button>&nbsp;
+							<button class="btn btn-primary text-capitalize"
+								value='Add' name="add" onclick='add_item({{target}});'>
+								<span id='add' class='text-capitalize'>{{activity}}</span> 
+								<span id='addicon' class="glyphicon {{action_icon}} label">
+							</button>&nbsp;&nbsp;
+						</span>
+					</div>
+				</div>
 			</div>
-			<div class='row'>
-				<span class='col-sm-2'>email</span> <span
-					class='col-sm-8 pull-right'><input class="text" type='text'
-					name='email' value="{{email}}" /></span>
-			</div>
-			<div class='row'>
-				<span class='col-sm-2'>Phone</span> <span
-					class='col-sm-8 pull-right'><input class="text" type='text'
-					name='phone' value="{{phone}}" /></span>
-			</div>
-			<div class='row'>
-				<span class='col-sm-10'>&nbsp;</span> <span
-					class='col-sm-2 pull-right'> <input class="btn"
-					type='submit' value='Add' name="add" />
-				</span>
+			<div class='col-sm-8 pull-top' style="padding: 10px;">
+				<div class='well' style="background-color: #f9fbff;">
+					<table class="table well table-striped"
+						style='border: solid 1px transparent;'>
+						<thead>
+							<tr class='row bg-primary' style="color: yellow; font-size: 1.5vw">
+								<th class='col-sm-1'>S No</th>
+								<th class='col-sm-3'>
+									<span class="glyphicon glyphicon-user" style='color: lightgreen'> </span> &nbsp;  Name</th>
+								<th class='col-sm-3'>
+									<span class="glyphicon glyphicon-phone" style='color: cyan'> </span> &nbsp; Phone Number</th>
+								<th class='col-sm-4'>
+									<span class="glyphicon glyphicon-envelope" style='color: lightyellow'> </span> &nbsp; Email Address</th>
+								<th class='col-sm-1'>
+									<span class="glyphicon glyphicon-cog" style='color: white'> </span> &nbsp; Actions</th>
+							</tr>
+						</thead>
+						{% for item in items %}
+						<tr class='row' style="font-size: 1.3vw">
+							<td class='col-sm-1'>{{item.sno}}</td>
+							<td class='col-sm-3'>{{item.name}}</td>
+							<td class='col-sm-3'>{{item.phone}}</td>
+							<td class='col-sm-4'>{{item.email}}</td>
+							<td class='col-sm-1'>
+								<a href="#" onclick="edit_item({{item.id}})"
+									class="glyphicon glyphicon-edit text-large text-primary"><span></span></a>
+								&nbsp; &nbsp;
+								<a href="#" onclick="remove_item({{item.id}})"
+									class="glyphicon glyphicon-remove text-large text-danger"><span></span></a></td>
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
 			</div>
 		</div>
-		<div class='row'>
-			<table class="table table-striped">
-				<thead>
-					<tr class='row'>
-						<th class='col-sm-1'>Id</th>
-						<th class='col-sm-3'>Name</th>
-						<th class='col-sm-3'>Phone Number</th>
-						<th class='col-sm-3'>Email Address</thd>
-					</tr>
-				</thead>
-				{% for item in items %}
-				<tr class='row'>
-					<td class='col-sm-1'>{{item.id}}</td>
-					<td class='col-sm-3'>{{item.name}}</td>
-					<td class='col-sm-3'>{{item.phone}}</td>
-					<td class='col-sm-3'>{{item.email}}</td>
-				</tr>
-				{% endfor %}
-			</table>
-		</div>
-	</div>
-</form>
+
+	</form>
+</div>
 {% endblock %}

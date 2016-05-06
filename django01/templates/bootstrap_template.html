@@ -8,57 +8,28 @@
 <title>{% block title %}bootstrap template {% endblock %}</title>
 </head>
 <body>
-	<div>
-		<nav class="navbar navbar-success navbar-inverse navbar-fixed-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#"> <b class=" disabled">
-							Welcome </b></a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li><a href="/"><span
-							class="badge glyphicon glyphicon-user"> </span> <b
-							class=" disabled"> {{request.user}}</b></a></li>
-					<li><a href="/" class="text-primary"><span
-							class="glyphicon glyphicon-home"> </span> Home </a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-centre bg-primary text-default">
-					<li><a class="lead" style="height: 30px"><b>DJANGO-01 Website with
-								multiple Samples</b></a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="text-success"><a href="#"> <span
-							class="glyphicon glyphicon-globe"> </span>
-							{{request.META.REMOTE_ADDR}}
-					</a></li>
-					<li><a href="/admin"><span
-							class="badge badge-default glyphicon glyphicon-wrench bg-primary"> </span>
-							Administration</a></li>
-				</ul>
-			</div>
-		</nav>
-		<div style="top: 0px; height: 50px;">&nbsp;</div>
+	<div class='row bg-primary lead'
+		style='position: relative; top: 0px;'>
+		<div class='col-sm-1 text-left text-capitalize'>&nbsp;Welcome</div>
+		<div class='col-sm-2'>
+			<span class="text-success glyphicon glyphicon-user"> </span> 
+			<b>{{request.user}}</b></div>
+		<div class='col-sm-1 text-capitalize'>
+			<a href="/" class='badge text-primary text-large'><span class="glyphicon glyphicon-home"> </span> Home </a></div>
+		<div class='col-sm-4 text-centre text-capitalize'>
+			<b>DJANGO-01 Website with multiple Samples</b></div>
+		<div class='col-sm-2 text-right'>
+			<span class="glyphicon glyphicon-globe text-capitalize"> </span> {{request.META.REMOTE_ADDR}}</div>
+		<div class='col-sm-1 text-right text-capitalize'>
+			<a href="/admin"class='badge text-primary text-large'><span class="glyphicon glyphicon-wrench"> </span>
+			Administration</a>&nbsp;</div>
 	</div>
 	{%block body %}
 	<h1>Bootstrap template</h1>
-	<div style="width: 99%; height: 125%">
+	<div style="width: auto; height: auto">
 		&nbsp;<br /> <br />
 	</div>
 	&nbsp;
-	<br />
-	<br />&nbsp;
-	<br />
-	<br />&nbsp;
-	<br />
-	<br />&nbsp;
-	<br />
-	<br />&nbsp;
-	<br />
-	<br />&nbsp;
-	<br />
-	<br />&nbsp;
-	<br />
-	<br />&nbsp;
 	<br />
 	<br />&nbsp;
 	<br />
