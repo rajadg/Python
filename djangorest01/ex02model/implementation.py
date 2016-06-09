@@ -1,15 +1,20 @@
 '''
-Created on 22-May-2016
+Created on 26-May-2016
 
 @author: dgraja
 '''
-
+from rest_framework import serializers
+from ex02model.models import comment
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
-from content.models import comment
-from content.serializers import CommentSerializer
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = comment
+        fields = ('id', 'text', 'author')
 
 
 class JSONResponse(HttpResponse):
@@ -27,7 +32,7 @@ def comment_detail(request, pk):
     try:
         item = None
         if str(pk) != '0' or request.method == "GET":
-            item = comment.objects.all(pk=pk)
+            item = comment.objects.filter(pk=int(pk))[0]
     except comment.DoesNotExist:
         print "comment with id: %r does not exist" % item
         return HttpResponse(status=404)
@@ -68,6 +73,3 @@ def comment_list(request):
         print "comments empty"
     return HttpResponse(status=404)
 
-
-if __name__ == '__main__':
-    pass
