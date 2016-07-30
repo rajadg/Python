@@ -5,7 +5,11 @@ Created on 30-Jul-2016
 '''
 import json
 from elasticsearch import Elasticsearch
+from time import time
+from datetime import datetime
 
+
+index_name = "test_%d" % time()
 
 def display(name, data):
     line = "-" * 80
@@ -18,12 +22,23 @@ def create_index(es):
     '''
         create a new index
     '''
-    es.indices.create("client_stats")
+    es.indices.create(index_name)
 
+
+def add_items(es):
+    data = {'time': datetime.utcnow(),
+            'type': 'warning',
+            'thread': 234234,
+            'pid': 1001,
+            'location': 'sample.test',
+            'message': 'test message at ...',
+            'traceback': None}
+    print es.create(index=index_name, doc_type='log', body=data)
 
 def main():
     es = Elasticsearch(["127.0.0.1:9200",])
     create_index(es)
+    add_items(es)
     return
 
 
