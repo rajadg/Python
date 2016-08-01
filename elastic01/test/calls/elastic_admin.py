@@ -5,6 +5,7 @@ Created on 30-Jul-2016
 '''
 import json
 from elasticsearch import Elasticsearch
+from test.calls import __server_addr__
 
 
 def display(name, data):
@@ -27,7 +28,7 @@ def get_stats(es):
 
 
 def main():
-    es = Elasticsearch(["127.0.0.1:9200",])
+    es = Elasticsearch([__server_addr__,])
     get_stats(es)
     return
 
