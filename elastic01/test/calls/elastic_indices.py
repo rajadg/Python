@@ -5,11 +5,9 @@ Created on 30-Jul-2016
 '''
 import json
 from elasticsearch import Elasticsearch
-from time import time
 from datetime import datetime
 from test.calls import __server_addr__
-from _ctypes import ArgumentError
-
+from pydoc import Doc
 
 
 index_name = "test_%s" % datetime.now().strftime("%Y-%m-%d_%H.%M.%S")
@@ -97,7 +95,7 @@ def add_items(es):
             'location': 'sample.test',
             'message': 'test message at ...',
             'traceback': None}
-    print es.create(index=index_name, doc_type='log', body=data)
+    return es.create(index=index_name, doc_type='log', body=data)
 
 
 def main():
@@ -109,7 +107,12 @@ def main():
         
     print "New index : %s" % index_name
     create_index(es)
-    add_items(es)
+    doc = add_items(es)
+    display("created doc", doc)
+    
+    print "get doc from id: %s" % doc["_id"]
+    display("doc get", es.get(index=index_name, id=doc["_id"]))
+    
     result, _ = find_index(es, pattern='test_*')
     for item in result:
         close_index(es, name=item)
