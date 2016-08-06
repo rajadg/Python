@@ -7,7 +7,6 @@ import json
 from elasticsearch import Elasticsearch
 from datetime import datetime
 from test.calls import __server_addr__
-from pydoc import Doc
 
 
 index_name = "test_%s" % datetime.now().strftime("%Y-%m-%d_%H.%M.%S")
