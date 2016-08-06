@@ -81,7 +81,7 @@ def open_index(es, name=None):
         es.indices.open(index = name)
 
 
-def add_items(es):
+def add_items(es, **params):
     '''
         Add a custom item to the existing index
         like this:
@@ -94,6 +94,9 @@ def add_items(es):
             'location': 'sample.test',
             'message': 'test message at ...',
             'traceback': None}
+    for key, val in params.iteritems():
+        data[key] = val
+    print data
     return es.create(index=index_name, doc_type='log', body=data)
 
 
