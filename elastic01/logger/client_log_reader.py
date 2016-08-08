@@ -72,15 +72,16 @@ class LogEntry(object):
 
 
 class ClientLog(object):
-    def __init__(self, log_file='test.log'):
+    def __init__(self, log_file='test.log', encoding='utf-8'):
         self.log_file = log_file
         self.entries = []
+        self.encoding = encoding
         self.read_logs()
 
     def read_logs(self):
         with open(self.log_file, 'r') as fp:
             count = 0
-            line = fp.readline()
+            line = self.encode_line(fp.readline())
             active_entry = None
             while line:
                 count = count + 1
@@ -90,8 +91,14 @@ class ClientLog(object):
                     self.entries.append(entry)
                 else:
                     active_entry.extend(entry)
-                line = fp.readline()
+                line = self.encode_line(fp.readline())
         return
+    
+    def encode_line(self, line):
+        try:
+            return line.decode(self.encoding, errors='ignore').encode("utf-8", errors='ignore')
+        except Exception:
+            return line
 
     def write_log(self, out_file, logs=None):
         directory = os.path.dirname(out_file)
